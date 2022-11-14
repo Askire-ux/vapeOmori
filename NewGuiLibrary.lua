@@ -1,5 +1,5 @@
 if shared.YokaiExecuted then
-	local VERSION = "4.09"..(shared.YokaiPrivate and " PRIVATE" or "")
+	local VERSION = "2.57"..(shared.YokaiPrivate and " PRIVATE" or "")
 	local customdir = (shared.YokaiPrivate and "yokaiprivate/" or "yokai/")
 	local rainbowvalue = 0
 	local cam = game:GetService("Workspace").CurrentCamera
