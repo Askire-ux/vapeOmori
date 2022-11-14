@@ -14,7 +14,7 @@ local cam = workspace.CurrentCamera
 workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	cam = (workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera") or Instance.new("Camera"))
 end)
-local targetinfo = shared.VapeTargetInfo
+local targetinfo = shared.YokaiTargetInfo
 local uis = game:GetService("UserInputService")
 local v3check = syn and syn.toast_notification and "V3" or ""
 local networkownertick = tick()
@@ -30,12 +30,12 @@ local betterisfile = function(file)
 	return suc and res ~= nil
 end
 local function GetURL(scripturl)
-	if shared.VapeDeveloper then
-		assert(betterisfile("vape/"..scripturl), "File not found : vape/"..scripturl)
-		return readfile("vape/"..scripturl)
+	if shared.YokaiDeveloper then
+		assert(betterisfile("yokai/"..scripturl), "File not found : yokai/"..scripturl)
+		return readfile("yokai/"..scripturl)
 	else
-		local res = game:HttpGet("https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/"..scripturl, true)
-		assert(res ~= "404: Not Found", "File not found : vape/"..scripturl)
+		local res = game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/main/"..scripturl, true)
+		assert(res ~= "404: Not Found", "File not found : yokai/"..scripturl)
 		return res
 	end
 end
@@ -56,7 +56,7 @@ end
 local queueteleport = syn and syn.queue_on_teleport or queue_on_teleport or fluxus and fluxus.queue_on_teleport or function() end
 local getasset = getsynasset or getcustomasset or function(location) return "rbxasset://"..location end
 local entity = loadstring(GetURL("Libraries/entityHandler.lua"))()
-shared.vapeentity = entity
+shared.yokaientity = entity
 
 local RunLoops = {RenderStepTable = {}, StepTable = {}, HeartTable = {}}
 do
@@ -101,8 +101,8 @@ do
 end
 
 local WhitelistFunctions = {StoredHashes = {}, PriorityList = {
-	["VAPE OWNER"] = 3,
-	["VAPE PRIVATE"] = 2,
+	["YOKAI OWNER"] = 3,
+	["YOKAI PRIVATE"] = 2,
 	["DEFAULT"] = 1
 }, WhitelistTable = {}, Loaded = true, CustomTags = {}}
 do
@@ -115,7 +115,7 @@ do
 	task.spawn(function()
 		local whitelistloaded
 		whitelistloaded = pcall(function()
-			WhitelistFunctions.WhitelistTable = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/vapeOmori/whitelist2.json", true))
+			WhitelistFunctions.WhitelistTable = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokaiOmori/whitelist2.json", true))
 		end)
 		shalib = loadstring(GetURL("Libraries/sha.lua"))()
 		if not whitelistloaded or not shalib then return end
@@ -135,10 +135,10 @@ do
 	function WhitelistFunctions:GetTag(plr)
 		local plrstr = WhitelistFunctions:CheckPlayerType(plr)
 		local hash = WhitelistFunctions:Hash(plr.Name..plr.UserId)
-		if plrstr == "VAPE OWNER" then
-			return "[VAPE OWNER] "
-		elseif plrstr == "VAPE PRIVATE" then 
-			return "[VAPE PRIVATE] "
+		if plrstr == "YOKAI OWNER" then
+			return "[YOKAI OWNER] "
+		elseif plrstr == "YOKAI PRIVATE" then 
+			return "[YOKAI PRIVATE] "
 		elseif WhitelistFunctions.WhitelistTable.chattags[hash] then
 			local data = WhitelistFunctions.WhitelistTable.chattags[hash]
 			local newnametag = ""
@@ -165,7 +165,7 @@ do
 		local private = WhitelistFunctions:FindWhitelistTable(WhitelistFunctions.WhitelistTable.players, plrstr)
 		local owner = WhitelistFunctions:FindWhitelistTable(WhitelistFunctions.WhitelistTable.owners, plrstr)
 		local tab = owner or private
-		playertype = owner and "VAPE OWNER" or private and "VAPE PRIVATE" or "DEFAULT"
+		playertype = owner and "YOKAI OWNER" or private and "YOKAI PRIVATE" or "DEFAULT"
 		playerattackable = (not tab) or (not (type(tab) == "table" and tab.invulnerable or true))
 		return playertype, playerattackable
 	end
@@ -187,7 +187,7 @@ do
 		return false
 	end
 end
-shared.vapewhitelist = WhitelistFunctions
+shared.yokaiwhitelist = WhitelistFunctions
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
@@ -231,7 +231,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/Askire-ux/yokai/main/"..path:gsub("yokai/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -380,7 +380,7 @@ local radarcam = Instance.new("Camera")
 radarcam.FieldOfView = 45
 local Radar = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Radar", 
-	["Icon"] = "vape/assets/RadarIcon1.png",
+	["Icon"] = "yokai/assets/RadarIcon1.png",
 	["IconSize"] = 16
 })
 local RadarColor = Radar.CreateColorSlider({
@@ -437,7 +437,7 @@ players.PlayerRemoving:Connect(function(plr)
 end)
 GuiLibrary["ObjectsThatCanBeSaved"]["GUIWindow"]["Api"].CreateCustomToggle({
 	["Name"] = "Radar", 
-	["Icon"] = "vape/assets/RadarIcon2.png", 
+	["Icon"] = "yokai/assets/RadarIcon2.png", 
 	["Function"] = function(callback)
 		Radar.SetVisible(callback) 
 		if callback then
@@ -2600,7 +2600,7 @@ local Arrows = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].Create
 						thing.AnchorPoint = Vector2.new(0.5, 0.5)
 						thing.Position = UDim2.new(0.5, 0, 0.5, 0)
 						thing.Visible = false
-						thing.Image = getcustomassetfunc("vape/assets/ArrowIndicator.png")
+						thing.Image = getcustomassetfunc("yokai/assets/ArrowIndicator.png")
 						thing.Name = plr.Name
 						thing.Parent = ArrowsFolder
 					end
@@ -4264,6 +4264,33 @@ freecamspeed = Freecam.CreateSlider({
 	["Default"] = 75
 })
 
+
+
+-- testing
+
+
+
+local TestThing = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "Test Feature", 
+	["Function"] = function(callback)
+		if callback then
+			print("testing")
+		end
+	end,
+	["HoverText"] = "Simply a test feature."
+})
+
+
+
+
+
+-- testing
+
+
+
+
+
+
 local Panic = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 	["Name"] = "Panic", 
 	["Function"] = function(callback)
@@ -4330,7 +4357,7 @@ runcode(function()
 						repeat
 							if ChatSpammer["Enabled"] then
 								pcall(function()
-									repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer((#ChatSpammerMessages["ObjectList"] > 0 and ChatSpammerMessages["ObjectList"][math.random(1, #ChatSpammerMessages["ObjectList"])] or "vxpe on top"), "All")
+									repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer((#ChatSpammerMessages["ObjectList"] > 0 and ChatSpammerMessages["ObjectList"][math.random(1, #ChatSpammerMessages["ObjectList"])] or "yokai. [Concat is also good] - Script Hub!"), "All")
 								end)
 							end
 							if waitnum ~= 0 then
@@ -4402,33 +4429,33 @@ runcode(function()
 				controlmodule.moveFunction = oldmove
 			end
 		end,
-		["HoverText"] = "lets you not walk off because you are bad"
+		["HoverText"] = "Prevents you from falling off places. [BUGGY]"
 	})
 end)
 
 runcode(function()
-	local vapecapeconnection
+	local yokaicapeconnection
 	GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "Cape",
 		["Function"] = function(callback)
 			if callback then
-				vapecapeconnection = lplr.CharacterAdded:Connect(function(char)
+				yokaicapeconnection = lplr.CharacterAdded:Connect(function(char)
 					spawn(function()
 						pcall(function() 
-							Cape(char, getcustomassetfunc("vape/assets/VapeCape.png"))
+							Cape(char, getcustomassetfunc("yokai/assets/YokaiCape.png"))
 						end)
 					end)
 				end)
 				if lplr.Character then
 					spawn(function()
 						pcall(function() 
-							Cape(lplr.Character, getcustomassetfunc("vape/assets/VapeCape.png"))
+							Cape(lplr.Character, getcustomassetfunc("yokai/assets/YokaiCape.png"))
 						end)
 					end)
 				end
 			else
-				if vapecapeconnection then
-					vapecapeconnection:Disconnect()
+				if yokaicapeconnection then
+					yokaicapeconnection:Disconnect()
 				end
 				if lplr.Character then
 					for i,v in pairs(lplr.Character:GetDescendants()) do
@@ -4627,10 +4654,12 @@ runcode(function()
 		["adopted"] = "Bullying",
 		["linlife"] = "Bullying",
 		["commitnotalive"] = "Bullying",
-		["vape"] = "Offsite Links",
+		["yokai"] = "Offsite Links",
 		["futureclient"] = "Offsite Links",
 		["synapse"] = "Offsite Links",
 		["skidware"] = "Offsite Links",
+		["v3rm"] = "Offsite Links",
+		["v3rmillion"] = "Offsite Links",
 		["scriptware"] = "Offsite Links",
 		["download"] = "Offsite Links",
 		["youtube"] = "Offsite Links",
@@ -4784,8 +4813,8 @@ runcode(function()
 					end
 					if AutoLeaveMode["Value"] == "UnInject" then 
 						task.spawn(function()
-							if not shared.VapeFullyLoaded then
-								repeat task.wait() until shared.VapeFullyLoaded
+							if not shared.YokaiFullyLoaded then
+								repeat task.wait() until shared.YokaiFullyLoaded
 								task.wait(1)
 							end
 							GuiLibrary.SelfDestruct()
@@ -4882,12 +4911,12 @@ runcode(function()
 	})
 	AutoLeaveGroupId = AutoLeave.CreateTextBox({
 		["Name"] = "Group Id",
-		["TempText"] = "0 (group id)",
+		["TempText"] = "0",
 		["Function"] = function() end
 	})
 	AutoLeaveRank = AutoLeave.CreateTextBox({
 		["Name"] = "Rank Id",
-		["TempText"] = "1 (rank id)",
+		["TempText"] = "1",
 		["Function"] = function() end
 	})
 end)
@@ -4960,5 +4989,6 @@ runcode(function()
 				end
 			end
 		end
+		["HoverText"] = "Prevents games from kicking/banning you."
 	})
 end)

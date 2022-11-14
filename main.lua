@@ -1,19 +1,19 @@
 repeat task.wait() until game:IsLoaded() == true
 local injected = true
 local oldrainbow = false
-local customdir = (shared.VapePrivate and "vapeprivate/" or "vape/")
+local customdir = (shared.YokaiPrivate and "yokaiprivate/" or "yokai/")
 local betterisfile = function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
 end
 local function GetURL(scripturl)
-	if shared.VapeDeveloper then
-		if not betterisfile("vape/"..scripturl) then
-			error("File not found : vape/"..scripturl)
+	if shared.YokaiDeveloper then
+		if not betterisfile("yokai/"..scripturl) then
+			error("File not found : yokai/"..scripturl)
 		end
-		return readfile("vape/"..scripturl)
+		return readfile("yokai/"..scripturl)
 	else
-		local res = game:HttpGet("https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/"..scripturl, true)
+		local res = game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/main/"..scripturl, true)
 		assert(res ~= "404: Not Found", "File not found")
 		return res
 	end
@@ -38,7 +38,7 @@ end
 
 local function checkassetversion()
 	local req = requestfunc({
-		Url = "https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/assetsversion.dat",
+		Url = "https://raw.githubusercontent.com/Askire-ux/yokai/main/assetsversion.dat",
 		Method = "GET"
 	})
 	if req.StatusCode == 200 then
@@ -49,25 +49,25 @@ local function checkassetversion()
 end
 
 if not (getasset and requestfunc and queueteleport) then
-	print("Vape not supported with your exploit.")
+	print("Yokai not supported with your exploit.")
 	return
 end
 
-if shared.VapeExecuted then
-	error("Vape Already Injected")
+if shared.YokaiExecuted then
+	error("Yokai Already Injected")
 	return
 else
-	shared.VapeExecuted = true
+	shared.YokaiExecuted = true
 end
 
 if isfolder(customdir:gsub("/", "")) == false then
 	makefolder(customdir:gsub("/", ""))
 end
-if isfolder("vape") == false then
-	makefolder("vape")
+if isfolder("yokai") == false then
+	makefolder("yokai")
 end
-if not betterisfile("vape/assetsversion.dat") then
-	writefile("vape/assetsversion.dat", "1")
+if not betterisfile("yokai/assetsversion.dat") then
+	writefile("yokai/assetsversion.dat", "1")
 end
 if isfolder(customdir.."CustomModules") == false then
 	makefolder(customdir.."CustomModules")
@@ -75,33 +75,33 @@ end
 if isfolder(customdir.."Profiles") == false then
 	makefolder(customdir.."Profiles")
 end
-if not betterisfile("vape/language.dat") then
-	writefile("vape/language.dat", "en-us")
+if not betterisfile("yokai/language.dat") then
+	writefile("yokai/language.dat", "en-us")
 end
 local assetver = checkassetversion()
-if assetver and assetver > readfile("vape/assetsversion.dat") then
-	if shared.VapeDeveloper == nil then
-		if isfolder("vape/assets") then
+if assetver and assetver > readfile("yokai/assetsversion.dat") then
+	if shared.YokaiDeveloper == nil then
+		if isfolder("yokai/assets") then
 			if delfolder then
-				delfolder("vape/assets")
+				delfolder("yokai/assets")
 			end
 		end
-		writefile("vape/assetsversion.dat", assetver)
+		writefile("yokai/assetsversion.dat", assetver)
 	end
 end
-if isfolder("vape/assets") == false then
-	makefolder("vape/assets")
+if isfolder("yokai/assets") == false then
+	makefolder("yokai/assets")
 end
 
 local GuiLibrary = loadstring(GetURL("NewGuiLibrary.lua"))()
-local translations = {}--loadstring(GetURL("translations/"..GuiLibrary["Language"]..".vapetranslation"))()
-local translatedlogo = false--pcall(function() return GetURL("translations/"..GuiLibrary["Language"].."/VapeLogo1.png") end)
+local translations = {}--loadstring(GetURL("translations/"..GuiLibrary["Language"]..".yokaitranslation"))()
+local translatedlogo = false--pcall(function() return GetURL("translations/"..GuiLibrary["Language"].."/YokaiLogo1.png") end)
 
 local checkpublicreponum = 0
 local checkpublicrepo
 checkpublicrepo = function(id)
 	local suc, req = pcall(function() return requestfunc({
-		Url = "https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/CustomModules/"..id..".lua",
+		Url = "https://raw.githubusercontent.com/Askire-ux/yokai/main/CustomModules/"..id..".lua",
 		Method = "GET"
 	}) end)
 	if not suc then
@@ -146,7 +146,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/Askire-ux/yokai/main/"..path:gsub("yokai/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -170,68 +170,68 @@ end)
 local GUI = GuiLibrary.CreateMainWindow()
 local Combat = GuiLibrary.CreateWindow({
 	["Name"] = "Combat", 
-	["Icon"] = "vape/assets/CombatIcon.png", 
+	["Icon"] = "yokai/assets/CombatIcon.png", 
 	["IconSize"] = 15
 })
 local Blatant = GuiLibrary.CreateWindow({
 	["Name"] = "Blatant", 
-	["Icon"] = "vape/assets/BlatantIcon.png", 
+	["Icon"] = "yokai/assets/BlatantIcon.png", 
 	["IconSize"] = 16
 })
 local Render = GuiLibrary.CreateWindow({
 	["Name"] = "Render", 
-	["Icon"] = "vape/assets/RenderIcon.png", 
+	["Icon"] = "yokai/assets/RenderIcon.png", 
 	["IconSize"] = 17
 })
 local Utility = GuiLibrary.CreateWindow({
 	["Name"] = "Utility", 
-	["Icon"] = "vape/assets/UtilityIcon.png", 
+	["Icon"] = "yokai/assets/UtilityIcon.png", 
 	["IconSize"] = 17
 })
 local World = GuiLibrary.CreateWindow({
 	["Name"] = "World", 
-	["Icon"] = "vape/assets/WorldIcon.png", 
+	["Icon"] = "yokai/assets/WorldIcon.png", 
 	["IconSize"] = 16
 })
 local Friends = GuiLibrary.CreateWindow2({
 	["Name"] = "Friends", 
-	["Icon"] = "vape/assets/FriendsIcon.png", 
+	["Icon"] = "yokai/assets/FriendsIcon.png", 
 	["IconSize"] = 17
 })
 local Profiles = GuiLibrary.CreateWindow2({
 	["Name"] = "Profiles", 
-	["Icon"] = "vape/assets/ProfilesIcon.png", 
+	["Icon"] = "yokai/assets/ProfilesIcon.png", 
 	["IconSize"] = 19
 })
 GUI.CreateDivider()
 GUI.CreateButton({
 	["Name"] = "Combat", 
 	["Function"] = function(callback) Combat.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/CombatIcon.png", 
+	["Icon"] = "yokai/assets/CombatIcon.png", 
 	["IconSize"] = 15
 })
 GUI.CreateButton({
 	["Name"] = "Blatant", 
 	["Function"] = function(callback) Blatant.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/BlatantIcon.png", 
+	["Icon"] = "yokai/assets/BlatantIcon.png", 
 	["IconSize"] = 16
 })
 GUI.CreateButton({
 	["Name"] = "Render", 
 	["Function"] = function(callback) Render.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/RenderIcon.png", 
+	["Icon"] = "yokai/assets/RenderIcon.png", 
 	["IconSize"] = 17
 })
 GUI.CreateButton({
 	["Name"] = "Utility", 
 	["Function"] = function(callback) Utility.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/UtilityIcon.png", 
+	["Icon"] = "yokai/assets/UtilityIcon.png", 
 	["IconSize"] = 17
 })
 GUI.CreateButton({
 	["Name"] = "World", 
 	["Function"] = function(callback) World.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/WorldIcon.png", 
+	["Icon"] = "yokai/assets/WorldIcon.png", 
 	["IconSize"] = 16
 })
 GUI.CreateDivider("MISC")
@@ -317,7 +317,7 @@ ProfilesTextList = Profiles.CreateTextList({
 	end, 
 	["RemoveFunction"] = function(num, obj) 
 		if obj ~= "default" and obj ~= GuiLibrary["CurrentProfile"] then 
-			pcall(function() delfile(customdir.."Profiles/"..obj..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") end)
+			pcall(function() delfile(customdir.."Profiles/"..obj..(shared.CustomSaveYokai or game.PlaceId)..".yokaiprofile.txt") end)
 			GuiLibrary["Profiles"][obj] = nil
 		else
 			table.insert(ProfilesTextList["ObjectList"], obj)
@@ -343,7 +343,7 @@ ProfilesTextList = Profiles.CreateTextList({
 		bindbkg.Visible = GuiLibrary["Profiles"][profilename]["Keybind"] ~= ""
 		bindbkg.Parent = obj
 		local bindimg = Instance.new("ImageLabel")
-		bindimg.Image = getcustomassetfunc("vape/assets/KeybindIcon.png")
+		bindimg.Image = getcustomassetfunc("yokai/assets/KeybindIcon.png")
 		bindimg.BackgroundTransparency = 1
 		bindimg.Size = UDim2.new(0, 12, 0, 12)
 		bindimg.Position = UDim2.new(0, 4, 0, 5)
@@ -407,14 +407,14 @@ ProfilesTextList = Profiles.CreateTextList({
 			end
 		end)
 		bindbkg.MouseEnter:Connect(function() 
-			bindimg.Image = getcustomassetfunc("vape/assets/PencilIcon.png") 
+			bindimg.Image = getcustomassetfunc("yokai/assets/PencilIcon.png") 
 			bindimg.Visible = true
 			bindtext.Visible = false
 			bindbkg.Size = UDim2.new(0, 20, 0, 21)
 			bindbkg.Position = UDim2.new(1, -50, 0, 6)
 		end)
 		bindbkg.MouseLeave:Connect(function() 
-			bindimg.Image = getcustomassetfunc("vape/assets/KeybindIcon.png")
+			bindimg.Image = getcustomassetfunc("yokai/assets/KeybindIcon.png")
 			if GuiLibrary["Profiles"][profilename]["Keybind"] ~= "" then
 				bindimg.Visible = false
 				bindtext.Visible = true
@@ -468,7 +468,7 @@ local OnlineProfilesButtonImage = Instance.new("ImageLabel")
 OnlineProfilesButtonImage.BackgroundTransparency = 1
 OnlineProfilesButtonImage.Position = UDim2.new(0, 14, 0, 7)
 OnlineProfilesButtonImage.Size = UDim2.new(0, 17, 0, 16)
-OnlineProfilesButtonImage.Image = getcustomassetfunc("vape/assets/OnlineProfilesButton.png")
+OnlineProfilesButtonImage.Image = getcustomassetfunc("yokai/assets/OnlineProfilesButton.png")
 OnlineProfilesButtonImage.ImageColor3 = Color3.fromRGB(121, 121, 121)
 OnlineProfilesButtonImage.ZIndex = 1
 OnlineProfilesButtonImage.Active = false
@@ -489,7 +489,7 @@ OnlineProfilesExitButton.Name = "OnlineProfilesExitButton"
 OnlineProfilesExitButton.ImageColor3 = Color3.fromRGB(121, 121, 121)
 OnlineProfilesExitButton.Size = UDim2.new(0, 24, 0, 24)
 OnlineProfilesExitButton.AutoButtonColor = false
-OnlineProfilesExitButton.Image = getcustomassetfunc("vape/assets/ExitIcon1.png")
+OnlineProfilesExitButton.Image = getcustomassetfunc("yokai/assets/ExitIcon1.png")
 OnlineProfilesExitButton.Visible = true
 OnlineProfilesExitButton.Position = UDim2.new(1, -31, 0, 8)
 OnlineProfilesExitButton.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
@@ -506,7 +506,7 @@ end)
 local OnlineProfilesFrameShadow = Instance.new("ImageLabel")
 OnlineProfilesFrameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 OnlineProfilesFrameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-OnlineProfilesFrameShadow.Image = getcustomassetfunc("vape/assets/WindowBlur.png")
+OnlineProfilesFrameShadow.Image = getcustomassetfunc("yokai/assets/WindowBlur.png")
 OnlineProfilesFrameShadow.BackgroundTransparency = 1
 OnlineProfilesFrameShadow.ZIndex = -1
 OnlineProfilesFrameShadow.Size = UDim2.new(1, 6, 1, 6)
@@ -516,7 +516,7 @@ OnlineProfilesFrameShadow.SliceCenter = Rect.new(10, 10, 118, 118)
 OnlineProfilesFrameShadow.Parent = OnlineProfilesFrame
 local OnlineProfilesFrameIcon = Instance.new("ImageLabel")
 OnlineProfilesFrameIcon.Size = UDim2.new(0, 19, 0, 16)
-OnlineProfilesFrameIcon.Image = getcustomassetfunc("vape/assets/ProfilesIcon.png")
+OnlineProfilesFrameIcon.Image = getcustomassetfunc("yokai/assets/ProfilesIcon.png")
 OnlineProfilesFrameIcon.Name = "WindowIcon"
 OnlineProfilesFrameIcon.BackgroundTransparency = 1
 OnlineProfilesFrameIcon.Position = UDim2.new(0, 10, 0, 13)
@@ -593,12 +593,12 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 	GuiLibrary["MainGui"].ScaledGui.ClickGui.Visible = false
 	if profilesloaded == false then
 		local onlineprofiles = {}
-		local saveplaceid = tostring(shared.CustomSaveVape or game.PlaceId)
-		for i,v in pairs(grabdata("https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt")) do 
+		local saveplaceid = tostring(shared.CustomSaveYokai or game.PlaceId)
+		for i,v in pairs(grabdata("https://raw.githubusercontent.com/Askire-ux/yokai/main/Profiles/"..saveplaceid.."/profilelist.txt")) do 
 			onlineprofiles[i] = v
 		end
 		for i2,v2 in pairs(onlineprofiles) do
-			local profileurl = "https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
+			local profileurl = "https://raw.githubusercontent.com/Askire-ux/yokai/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
 			local profilebox = Instance.new("Frame")
 			profilebox.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 			profilebox.Parent = OnlineProfilesList
@@ -649,7 +649,7 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 				profiledownload.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 			end)
 			profiledownload.MouseButton1Click:Connect(function()
-				writefile(customdir.."Profiles/"..v2["ProfileName"]..saveplaceid..".vapeprofile.txt", game:HttpGet(profileurl, true))
+				writefile(customdir.."Profiles/"..v2["ProfileName"]..saveplaceid..".yokaiprofile.txt", game:HttpGet(profileurl, true))
 				GuiLibrary["Profiles"][v2["ProfileName"]] = {["Keybind"] = "", ["Selected"] = false}
 				local profiles = {}
 				for i,v in pairs(GuiLibrary["Profiles"]) do 
@@ -677,18 +677,18 @@ OnlineProfilesExitButton.MouseButton1Click:Connect(function()
 end)
 
 GUI.CreateDivider()
----GUI.CreateCustomButton("Favorites", "vape/assets/FavoritesListIcon.png", UDim2.new(0, 17, 0, 14), function() end, function() end)
---GUI.CreateCustomButton("Text GUIVertical", "vape/assets/TextGUIIcon3.png", UDim2.new(1, -56, 0, 15), function() end, function() end)
+---GUI.CreateCustomButton("Favorites", "yokai/assets/FavoritesListIcon.png", UDim2.new(0, 17, 0, 14), function() end, function() end)
+--GUI.CreateCustomButton("Text GUIVertical", "yokai/assets/TextGUIIcon3.png", UDim2.new(1, -56, 0, 15), function() end, function() end)
 local TextGui = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Text GUI", 
-	["Icon"] = "vape/assets/TextGUIIcon1.png", 
+	["Icon"] = "yokai/assets/TextGUIIcon1.png", 
 	["IconSize"] = 21
 })
 local TextGuiCircleObject = {["CircleList"] = {}}
---GUI.CreateCustomButton("Text GUI", "vape/assets/TextGUIIcon2.png", UDim2.new(1, -23, 0, 15), function() TextGui.SetVisible(true) end, function() TextGui.SetVisible(false) end, "OptionsButton")
+--GUI.CreateCustomButton("Text GUI", "yokai/assets/TextGUIIcon2.png", UDim2.new(1, -23, 0, 15), function() TextGui.SetVisible(true) end, function() TextGui.SetVisible(false) end, "OptionsButton")
 GUI.CreateCustomToggle({
 	["Name"] = "Text GUI", 
-	["Icon"] = "vape/assets/TextGUIIcon3.png",
+	["Icon"] = "yokai/assets/TextGUIIcon3.png",
 	["Function"] = function(callback) TextGui.SetVisible(callback) end,
 	["Priority"] = 2
 })	
@@ -714,7 +714,7 @@ onething.BackgroundColor3 = Color3.new(0, 0, 0)
 onething.BorderSizePixel = 0
 onething.BackgroundTransparency = 1
 onething.Visible = false
-onething.Image = getcustomassetfunc(translatedlogo and "vape/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "vape/assets/VapeLogo3.png")
+onething.Image = getcustomassetfunc(translatedlogo and "yokai/translations/"..GuiLibrary["Language"].."/YokaiLogo3.png" or "yokai/assets/YokaiLogo3.png")
 local onething2 = Instance.new("ImageLabel")
 onething2.Parent = onething
 onething2.Size = UDim2.new(0, 41, 0, 24)
@@ -723,7 +723,7 @@ onething2.Position = UDim2.new(1, 0, 0, 1)
 onething2.BorderSizePixel = 0
 onething2.BackgroundColor3 = Color3.new(0, 0, 0)
 onething2.BackgroundTransparency = 1
-onething2.Image = getcustomassetfunc("vape/assets/VapeLogo4.png")
+onething2.Image = getcustomassetfunc("yokai/assets/YokaiLogo4.png")
 local onething3 = onething:Clone()
 onething3.ImageColor3 = Color3.new(0, 0, 0)
 onething3.ImageTransparency = 0.5
@@ -986,25 +986,25 @@ textguimode = TextGui.CreateDropdown({
 		end
 		if val == "Drawing" then
 			local onethingdrawing = Drawing.new("Image")
-			onethingdrawing.Data = readfile(translatedlogo and "vape/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "vape/assets/VapeLogo3.png")
+			onethingdrawing.Data = readfile(translatedlogo and "yokai/translations/"..GuiLibrary["Language"].."/YokaiLogo3.png" or "yokai/assets/YokaiLogo3.png")
 			onethingdrawing.Size = onething.AbsoluteSize
 			onethingdrawing.Position = onething.AbsolutePosition + Vector2.new(0, 36)
 			onethingdrawing.ZIndex = 2
 			onethingdrawing.Visible = onething.Visible
 			local onething2drawing = Drawing.new("Image")
-			onething2drawing.Data = readfile("vape/assets/VapeLogo4.png")
+			onething2drawing.Data = readfile("yokai/assets/YokaiLogo4.png")
 			onething2drawing.Size = onething2.AbsoluteSize
 			onething2drawing.Position = onething2.AbsolutePosition + Vector2.new(0, 36)
 			onething2drawing.ZIndex = 2
 			onething2drawing.Visible = onething.Visible
 			local onething3drawing = Drawing.new("Image")
-			onething3drawing.Data = readfile(translatedlogo and "vape/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "vape/assets/VapeLogo3.png")
+			onething3drawing.Data = readfile(translatedlogo and "yokai/translations/"..GuiLibrary["Language"].."/YokaiLogo3.png" or "yokai/assets/YokaiLogo3.png")
 			onething3drawing.Size = onething.AbsoluteSize
 			onething3drawing.Position = onething.AbsolutePosition + Vector2.new(1, 37)
 			onething3drawing.Transparency = 0.5
 			onething3drawing.Visible = onething.Visible and onething3.Visible
 			local onething4drawing = Drawing.new("Image")
-			onething4drawing.Data = readfile("vape/assets/VapeLogo4.png")
+			onething4drawing.Data = readfile("yokai/assets/YokaiLogo4.png")
 			onething4drawing.Size = onething2.AbsoluteSize
 			onething4drawing.Position = onething2.AbsolutePosition + Vector2.new(1, 37)
 			onething4drawing.Transparency = 0.5
@@ -1147,7 +1147,7 @@ TextGui.CreateToggle({
 		onething.Visible = callback
 		UpdateHud()
 	end,
-	["HoverText"] = "Renders a vape watermark"
+	["HoverText"] = "Renders a yokai watermark"
 })
 textguirenderbkg = TextGui.CreateToggle({
 	["Name"] = "Render background", 
@@ -1229,7 +1229,7 @@ end
 
 local TargetInfo = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Target Info",
-	["Icon"] = "vape/assets/TargetInfoIcon1.png",
+	["Icon"] = "yokai/assets/TargetInfoIcon1.png",
 	["IconSize"] = 16
 })
 local TargetInfoDisplayNames = TargetInfo.CreateToggle({
@@ -1284,7 +1284,7 @@ targethealthbkg.Parent = targetinfobkg3
 local healthbarbkgshadow = Instance.new("ImageLabel")
 healthbarbkgshadow.AnchorPoint = Vector2.new(0.5, 0.5)
 healthbarbkgshadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-healthbarbkgshadow.Image = getcustomassetfunc("vape/assets/WindowBlur.png")
+healthbarbkgshadow.Image = getcustomassetfunc("yokai/assets/WindowBlur.png")
 healthbarbkgshadow.BackgroundTransparency = 1
 healthbarbkgshadow.ImageTransparency = 0.6
 healthbarbkgshadow.ZIndex = -1
@@ -1348,7 +1348,7 @@ TargetInfo.GetCustomChildren().Parent:GetPropertyChangedSignal("Size"):Connect(f
 		targetinfobkg3.Position = UDim2.new(0, 0, 0, 40)
 	end
 end)
-shared.VapeTargetInfo = {
+shared.YokaiTargetInfo = {
 	["UpdateInfo"] = function(tab, targetsize)
 		if TargetInfo.GetCustomChildren().Parent then
 			targetinfobkg3.Visible = (targetsize > 0) or (TargetInfo.GetCustomChildren().Parent.Size ~= UDim2.new(0, 220, 0, 0))
@@ -1368,7 +1368,7 @@ shared.VapeTargetInfo = {
 }
 GUI.CreateCustomToggle({
 	["Name"] = "Target Info", 
-	["Icon"] = "vape/assets/TargetInfoIcon2.png", 
+	["Icon"] = "yokai/assets/TargetInfoIcon2.png", 
 	["Function"] = function(callback) TargetInfo.SetVisible(callback) end,
 	["Priority"] = 1
 })
@@ -1390,7 +1390,7 @@ ModuleSettings.CreateToggle({
 		if callback then
 			MiddleClickInput = game:GetService("UserInputService").InputBegan:Connect(function(input1)
 				if input1.UserInputType == Enum.UserInputType.MouseButton3 then
-					local ent = shared.vapeentity
+					local ent = shared.yokaientity
 					if ent then 
 						local rayparams = RaycastParams.new()
 						rayparams.FilterType = Enum.RaycastFilterType.Whitelist
@@ -1675,16 +1675,16 @@ GUISettings.CreateSlider({
 local GUIbind = GUI.CreateGUIBind()
 
 local teleportfunc = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started and not shared.VapeIndependent then
-		local teleportstr = 'shared.VapeSwitchServers = true if shared.VapeDeveloper then loadstring(readfile("vape/NewMainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/NewMainScript.lua", true))() end'
-		if shared.VapeDeveloper then
-			teleportstr = 'shared.VapeDeveloper = true '..teleportstr
+    if State == Enum.TeleportState.Started and not shared.YokaiIndependent then
+		local teleportstr = 'shared.YokaiSwitchServers = true if shared.YokaiDeveloper then loadstring(readfile("yokai/NewMainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/main/NewMainScript.lua", true))() end'
+		if shared.YokaiDeveloper then
+			teleportstr = 'shared.YokaiDeveloper = true '..teleportstr
 		end
-		if shared.VapePrivate then
-			teleportstr = 'shared.VapePrivate = true '..teleportstr
+		if shared.YokaiPrivate then
+			teleportstr = 'shared.YokaiPrivate = true '..teleportstr
 		end
-		if shared.VapeCustomProfile then 
-			teleportstr = "shared.VapeCustomProfile = '"..shared.VapeCustomProfile.."'"..teleportstr
+		if shared.YokaiCustomProfile then 
+			teleportstr = "shared.YokaiCustomProfile = '"..shared.YokaiCustomProfile.."'"..teleportstr
 		end
 		GuiLibrary["SaveSettings"]()
 		queueteleport(teleportstr)
@@ -1718,14 +1718,14 @@ GuiLibrary["SelfDestruct"] = function()
 		end
 	end
 	GuiLibrary["SelfDestructEvent"]:Fire()
-	shared.VapeExecuted = nil
-	shared.VapePrivate = nil
-	shared.VapeFullyLoaded = nil
-	shared.VapeSwitchServers = nil
+	shared.YokaiExecuted = nil
+	shared.YokaiPrivate = nil
+	shared.YokaiFullyLoaded = nil
+	shared.YokaiSwitchServers = nil
 	shared.GuiLibrary = nil
-	shared.VapeIndependent = nil
-	shared.VapeManualLoad = nil
-	shared.CustomSaveVape = nil
+	shared.YokaiIndependent = nil
+	shared.YokaiManualLoad = nil
+	shared.CustomSaveYokai = nil
 	GuiLibrary["KeyInputHandler"]:Disconnect()
 	GuiLibrary["KeyInputHandler2"]:Disconnect()
 	if MiddleClickInput then
@@ -1739,13 +1739,13 @@ end
 GeneralSettings.CreateButton2({
 	["Name"] = "RESET CURRENT PROFILE", 
 	["Function"] = function()
-		local vapeprivate = shared.VapePrivate
-		local id = (shared.CustomSaveVape or game.PlaceId)
+		local yokaiprivate = shared.YokaiPrivate
+		local id = (shared.CustomSaveYokai or game.PlaceId)
 		GuiLibrary["SelfDestruct"]()
-		delfile(customdir.."Profiles/"..(GuiLibrary["CurrentProfile"] == "default" and "" or GuiLibrary["CurrentProfile"])..id..".vapeprofile.txt")
-		shared.VapeSwitchServers = true
-		shared.VapeOpenGui = true
-		shared.VapePrivate = vapeprivate
+		delfile(customdir.."Profiles/"..(GuiLibrary["CurrentProfile"] == "default" and "" or GuiLibrary["CurrentProfile"])..id..".yokaiprofile.txt")
+		shared.YokaiSwitchServers = true
+		shared.YokaiOpenGui = true
+		shared.YokaiPrivate = yokaiprivate
 		loadstring(GetURL("NewMainScript.lua"))()
 	end
 })
@@ -1812,10 +1812,10 @@ GeneralSettings.CreateButton2({
 	["Function"] = GuiLibrary["SelfDestruct"]
 })
 
-if shared.VapeIndependent then
+if shared.YokaiIndependent then
 	spawn(function()
-		repeat task.wait() until shared.VapeManualLoad
-		GuiLibrary["LoadSettings"](shared.VapeCustomProfile)
+		repeat task.wait() until shared.YokaiManualLoad
+		GuiLibrary["LoadSettings"](shared.YokaiCustomProfile)
 		if #ProfilesTextList["ObjectList"] == 0 then
 			table.insert(ProfilesTextList["ObjectList"], "default")
 			ProfilesTextList["RefreshValues"](ProfilesTextList["ObjectList"])
@@ -1823,43 +1823,43 @@ if shared.VapeIndependent then
 		GUIbind["Reload"]()
 		GuiLibrary["UpdateUI"](GuiLibrary["ObjectsThatCanBeSaved"]["Gui ColorSliderColor"]["Api"]["Hue"], GuiLibrary["ObjectsThatCanBeSaved"]["Gui ColorSliderColor"]["Api"]["Sat"], GuiLibrary["ObjectsThatCanBeSaved"]["Gui ColorSliderColor"]["Api"]["Value"])
 		UpdateHud()
-		if not shared.VapeSwitchServers then
+		if not shared.YokaiSwitchServers then
 			if blatantmode["Enabled"] then
 				pcall(function()
-					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Yokai is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
 					frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 				end)
 			end
 			GuiLibrary["LoadedAnimation"](welcomemsg["Enabled"])
 		else
-			shared.VapeSwitchServers = nil
+			shared.YokaiSwitchServers = nil
 		end
-		if shared.VapeOpenGui then
+		if shared.YokaiOpenGui then
 			GuiLibrary["MainGui"].ScaledGui.ClickGui.Visible = true
 			game:GetService("RunService"):SetRobloxGuiFocused(GuiLibrary["MainBlur"].Size ~= 0) 
-			shared.VapeOpenGui = nil
+			shared.YokaiOpenGui = nil
 		end
 
 		coroutine.resume(selfdestructsave)
 	end)
-	shared.VapeFullyLoaded = true
+	shared.YokaiFullyLoaded = true
 	return GuiLibrary
 else
 	loadstring(GetURL("AnyGame.lua"))()
-	if betterisfile("vape/CustomModules/"..game.PlaceId..".lua") then
-		loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
+	if betterisfile("yokai/CustomModules/"..game.PlaceId..".lua") then
+		loadstring(readfile("yokai/CustomModules/"..game.PlaceId..".lua"))()
 	else
 		local publicrepo = checkpublicrepo(game.PlaceId)
 		if publicrepo then
 			loadstring(publicrepo)()
 		end
 	end
-	if shared.VapePrivate then
-		if pcall(function() readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua") end) then
-			loadstring(readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua"))()
+	if shared.YokaiPrivate then
+		if pcall(function() readfile("yokaiprivate/CustomModules/"..game.PlaceId..".lua") end) then
+			loadstring(readfile("yokaiprivate/CustomModules/"..game.PlaceId..".lua"))()
 		end	
 	end
-	GuiLibrary["LoadSettings"](shared.VapeCustomProfile)
+	GuiLibrary["LoadSettings"](shared.YokaiCustomProfile)
 	local profiles = {}
 	for i,v in pairs(GuiLibrary["Profiles"]) do 
 		table.insert(profiles, i)
@@ -1869,23 +1869,23 @@ else
 	GUIbind["Reload"]()
 	GuiLibrary["UpdateUI"](GuiLibrary["ObjectsThatCanBeSaved"]["Gui ColorSliderColor"]["Api"]["Hue"], GuiLibrary["ObjectsThatCanBeSaved"]["Gui ColorSliderColor"]["Api"]["Sat"], GuiLibrary["ObjectsThatCanBeSaved"]["Gui ColorSliderColor"]["Api"]["Value"])
 	UpdateHud()
-	if not shared.VapeSwitchServers then
+	if not shared.YokaiSwitchServers then
 		if blatantmode["Enabled"] then
 			pcall(function()
-				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "Yokai is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
 				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 			end)
 		end
 		GuiLibrary["LoadedAnimation"](welcomemsg["Enabled"])
 	else
-		shared.VapeSwitchServers = nil
+		shared.YokaiSwitchServers = nil
 	end
-	if shared.VapeOpenGui then
+	if shared.YokaiOpenGui then
 		GuiLibrary["MainGui"].ScaledGui.ClickGui.Visible = true
 		game:GetService("RunService"):SetRobloxGuiFocused(GuiLibrary["MainBlur"].Size ~= 0) 
-		shared.VapeOpenGui = nil
+		shared.YokaiOpenGui = nil
 	end
 
 	coroutine.resume(selfdestructsave)
-	shared.VapeFullyLoaded = true
+	shared.YokaiFullyLoaded = true
 end

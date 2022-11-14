@@ -1,0 +1,19 @@
+
+{
+    "test1 Config": {
+        "ProfileName": "test1",
+        "OnlineProfileName": "test1.vapeprofile.txt"
+    },
+    "test2 Config": {
+        "ProfileName": "test2",
+        "OnlineProfileName": "test2.vapeprofile.txt"
+    },
+    "test3 Config": {
+        "ProfileName": "test3",
+        "OnlineProfileName": "test3.vapeprofile.txt"
+    },
+    "test4": {
+        "ProfileName": "test4",
+        "OnlineProfileName": "test4.vapeprofile.txt"
+    }
+}
