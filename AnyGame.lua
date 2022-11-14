@@ -3503,7 +3503,7 @@ GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
 local HealthText = Instance.new("TextLabel")
 HealthText.Font = Enum.Font.SourceSans
 HealthText.TextSize = 20
-HealthText.Text = "100❤"
+HealthText.Text = "100/100 HP"
 HealthText.Position = UDim2.new(0.5, 0, 0.5, 70)
 HealthText.BackgroundTransparency = 1
 HealthText.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -3517,7 +3517,7 @@ local Health = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].Create
 			HealthText.Visible = true
 			RunLoops:BindToRenderStep("Health", 1, function()
 				if entity.isAlive then
-					HealthText.Text = tostring(math.round(entity.character.Humanoid.Health)).."❤"
+					HealthText.Text = tostring(math.round(entity.character.Humanoid.Health)).."/".. tostring(math.round(entity.character.Humanoid.MaxHealth))
 				end
 			end)
 		else
@@ -4962,6 +4962,6 @@ runcode(function()
 				end
 			end
 		end
-		--["HoverText"] = "Prevents games from kicking/banning you."
+		["HoverText"] = "Prevents games from kicking/banning you."
 	})
 end)
