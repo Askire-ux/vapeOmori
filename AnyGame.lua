@@ -4264,33 +4264,6 @@ freecamspeed = Freecam.CreateSlider({
 	["Default"] = 75
 })
 
-
-
--- testing
-
-
-
-local TestThing = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-	["Name"] = "Test Feature", 
-	["Function"] = function(callback)
-		if callback then
-			print("testing")
-		end
-	end,
-	["HoverText"] = "Simply a test feature."
-})
-
-
-
-
-
--- testing
-
-
-
-
-
-
 local Panic = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
 	["Name"] = "Panic", 
 	["Function"] = function(callback)
@@ -4989,6 +4962,6 @@ runcode(function()
 				end
 			end
 		end
-		["HoverText"] = "Prevents games from kicking/banning you."
+		--["HoverText"] = "Prevents games from kicking/banning you."
 	})
 end)
