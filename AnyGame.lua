@@ -4986,12 +4986,18 @@ runcode(function()
 	hookmethods.kick = hookmethods.Kick
 
 	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Rejoin Server",
+		["Name"] = "Serverhop",
 		["Function"] = function(callback)
 			if callback then 
-				print("gyat gyat gyat gyat")
+				local GameID = game.placeId
+		local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..GameID.."/servers/Public?sortOrder=Asc&limit=100"))
+		for i,v in pairs(Servers.data) do
+		if v.playing ~= v.maxPlayers then
+			game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
+		end
+		end
 			end
 		end,
-		["HoverText"] = "Rejoins the same server that you are currently on."
+		["HoverText"] = "Rejoins the same game that you are currently on but on a different server."
 	})
 end)
