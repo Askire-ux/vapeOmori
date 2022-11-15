@@ -4917,6 +4917,7 @@ runcode(function()
 	})
 end)
 
+
 runcode(function()
 	local Disabler = {["Enabled"] = false}
 	local DisablerAntiKick = {["Enabled"] = false}
@@ -4961,7 +4962,36 @@ runcode(function()
 					end)
 				end
 			end
-		end
+		end,
 		["HoverText"] = "Prevents the game from kicking / banning you."
+	})
+end)
+
+
+
+
+runcode(function()
+	local TestFeature = {["Enabled"] = false}
+	local TestFeature2 = {["Enabled"] = false}
+	local TestFeatureHooked = false
+
+	local hookmethods = {
+		Kick = function(self)
+			if (not Disabler["Enabled"]) then return end
+			if type(self) == "userdata" and self == lplr then 
+				return true
+			end
+		end
+	}
+	hookmethods.kick = hookmethods.Kick
+
+	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "Rejoin Server",
+		["Function"] = function(callback)
+			if callback then 
+				print("gyat gyat gyat gyat")
+			end
+		end,
+		["HoverText"] = "Rejoins the same server that you are currently on."
 	})
 end)
