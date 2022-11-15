@@ -72,7 +72,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/Askire-ux/yokai/main/"..path:gsub("yokai/assets", "assets"),
+			Url = "hhttps://raw.githubusercontent.com/Askire-ux/yokai/main/"..path:gsub("yokai/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)

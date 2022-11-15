@@ -594,11 +594,12 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 	if profilesloaded == false then
 		local onlineprofiles = {}
 		local saveplaceid = tostring(shared.CustomSaveYokai or game.PlaceId)
-		for i,v in pairs(grabdata("https://raw.githubusercontent.com/Askire-ux/yokai/main/Profiles/"..saveplaceid.."/profilelist.txt")) do 
+		--place where bug might be
+		for i,v in pairs(grabdata("https://raw.githubusercontent.com/7GrandDadPGN/YokaiProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt")) do 
 			onlineprofiles[i] = v
 		end
 		for i2,v2 in pairs(onlineprofiles) do
-			local profileurl = "https://raw.githubusercontent.com/Askire-ux/yokai/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
+			local profileurl = "https://raw.githubusercontent.com/7GrandDadPGN/YokaiProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
 			local profilebox = Instance.new("Frame")
 			profilebox.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 			profilebox.Parent = OnlineProfilesList
@@ -1676,7 +1677,7 @@ local GUIbind = GUI.CreateGUIBind()
 
 local teleportfunc = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
     if State == Enum.TeleportState.Started and not shared.YokaiIndependent then
-		local teleportstr = 'shared.YokaiSwitchServers = true if shared.YokaiDeveloper then loadstring(readfile("yokai/NewMainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/main/NewMainScript.lua", true))() end'
+		local teleportstr = 'shared.YokaiSwitchServers = true if shared.YokaiDeveloper then loadstring(readfile("yokai/main.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/main/main.lua", true))() end'
 		if shared.YokaiDeveloper then
 			teleportstr = 'shared.YokaiDeveloper = true '..teleportstr
 		end
@@ -1746,7 +1747,7 @@ GeneralSettings.CreateButton2({
 		shared.YokaiSwitchServers = true
 		shared.YokaiOpenGui = true
 		shared.YokaiPrivate = yokaiprivate
-		loadstring(GetURL("NewMainScript.lua"))()
+		loadstring(GetURL("main.lua"))()
 	end
 })
 GUISettings.CreateButton2({

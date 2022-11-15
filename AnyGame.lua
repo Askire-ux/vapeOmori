@@ -115,7 +115,7 @@ do
 	task.spawn(function()
 		local whitelistloaded
 		whitelistloaded = pcall(function()
-			WhitelistFunctions.WhitelistTable = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokaiOmori/whitelist2.json", true))
+			WhitelistFunctions.WhitelistTable = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/whitelist2.json", true))
 		end)
 		shalib = loadstring(GetURL("Libraries/sha.lua"))()
 		if not whitelistloaded or not shalib then return end
@@ -3503,7 +3503,7 @@ GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
 local HealthText = Instance.new("TextLabel")
 HealthText.Font = Enum.Font.SourceSans
 HealthText.TextSize = 20
-HealthText.Text = "100/100 HP"
+HealthText.Text = "100/100"
 HealthText.Position = UDim2.new(0.5, 0, 0.5, 70)
 HealthText.BackgroundTransparency = 1
 HealthText.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -4330,7 +4330,7 @@ runcode(function()
 						repeat
 							if ChatSpammer["Enabled"] then
 								pcall(function()
-									repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer((#ChatSpammerMessages["ObjectList"] > 0 and ChatSpammerMessages["ObjectList"][math.random(1, #ChatSpammerMessages["ObjectList"])] or "yokai. [Concat is also good] - Script Hub!"), "All")
+									repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer((#ChatSpammerMessages["ObjectList"] > 0 and ChatSpammerMessages["ObjectList"][math.random(1, #ChatSpammerMessages["ObjectList"])] or "vxpe on top"), "All")
 								end)
 							end
 							if waitnum ~= 0 then
@@ -4402,7 +4402,7 @@ runcode(function()
 				controlmodule.moveFunction = oldmove
 			end
 		end,
-		["HoverText"] = "Prevents you from falling off places. [BUGGY]"
+		["HoverText"] = "lets you not walk off because you are bad"
 	})
 end)
 
@@ -4884,12 +4884,12 @@ runcode(function()
 	})
 	AutoLeaveGroupId = AutoLeave.CreateTextBox({
 		["Name"] = "Group Id",
-		["TempText"] = "0",
+		["TempText"] = "0 (group id)",
 		["Function"] = function() end
 	})
 	AutoLeaveRank = AutoLeave.CreateTextBox({
 		["Name"] = "Rank Id",
-		["TempText"] = "1",
+		["TempText"] = "1 (rank id)",
 		["Function"] = function() end
 	})
 end)
@@ -4962,6 +4962,5 @@ runcode(function()
 				end
 			end
 		end
-		["HoverText"] = "Prevents games from kicking/banning you."
 	})
 end)
