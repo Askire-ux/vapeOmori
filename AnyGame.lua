@@ -4962,5 +4962,6 @@ runcode(function()
 				end
 			end
 		end
+		["HoverText"] = "Prevents the game from kicking / banning you."
 	})
 end)
