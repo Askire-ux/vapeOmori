@@ -4884,12 +4884,12 @@ runcode(function()
 	})
 	AutoLeaveGroupId = AutoLeave.CreateTextBox({
 		["Name"] = "Group Id",
-		["TempText"] = "0 (group id)",
+		["TempText"] = "0",
 		["Function"] = function() end
 	})
 	AutoLeaveRank = AutoLeave.CreateTextBox({
 		["Name"] = "Rank Id",
-		["TempText"] = "1 (rank id)",
+		["TempText"] = "1",
 		["Function"] = function() end
 	})
 end)
@@ -5001,3 +5001,37 @@ runcode(function()
 		["HoverText"] = "Rejoins the same game that you are currently on but on a different server."
 	})
 end)
+
+
+if (game.placeId == 6152116144) then
+	runcode(function()
+			Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+			["Name"] = "[PS] Automatic Wind Breathing",
+			["Function"] = function(callback)
+				if callback then 
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1794,335,-3522)
+					local plr = game.Players.LocalPlayer
+	local Data = game.ReplicatedStorage["Player_Data"][plr.Name]
+	local PlayerGui = plr.PlayerGui
+	local Level = PlayerGui.Menu.Bars["Level_text"]
+		wait(1)
+
+
+			local args = {
+				[1] = "AddQuest",
+				[2] = "Players."..plr.Name..".PlayerGui.Npc_Dialogue.LocalScript.Checking",
+				[3] = 610462.1832735,
+				[4] = game:GetService("ReplicatedStorage").Player_Data[plr.Name].Quest,
+				[5] = {
+					["List"] = {},
+					["Current"] = "Defeat Wind Trainee"
+				}
+			}
+			
+			game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+				end
+			end,
+			["HoverText"] = "Automatically grants you Wind Breathing."
+		})
+	end)
+end
