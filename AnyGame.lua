@@ -1720,7 +1720,7 @@ runcode(function()
 	reachrange = Reach.CreateSlider({
 		["Name"] = "Range", 
 		["Min"] = 1,
-		["Max"] = 20, 
+		["Max"] = 35, 
 		["Function"] = function(val) end,
 	})
 
@@ -2403,7 +2403,7 @@ runcode(function()
 	speedval = speed.CreateSlider({
 		["Name"] = "Speed", 
 		["Min"] = 1,
-		["Max"] = 150, 
+		["Max"] = 200, 
 		["Function"] = function(val) end
 	})
 	speeddelay = speed.CreateSlider({
@@ -3503,7 +3503,7 @@ GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
 local HealthText = Instance.new("TextLabel")
 HealthText.Font = Enum.Font.SourceSans
 HealthText.TextSize = 20
-HealthText.Text = "100/100"
+HealthText.Text = "This game doesn't use 'Humanoid.Health' to calculate HP."
 HealthText.Position = UDim2.new(0.5, 0, 0.5, 70)
 HealthText.BackgroundTransparency = 1
 HealthText.TextColor3 = Color3.fromRGB(255, 0, 0)

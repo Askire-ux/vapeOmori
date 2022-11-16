@@ -1609,7 +1609,7 @@ GUISettings.CreateToggle({
 		game:GetService("RunService"):SetRobloxGuiFocused(GuiLibrary["MainGui"].ScaledGui.ClickGui.Visible and callback) 
 	end,
 	["Default"] = true,
-	["HoverText"] = "Blur the background of the GUI"
+	["HoverText"] = "Blurs the background of the GUI."
 })
 local welcomemsg = GUISettings.CreateToggle({
 	["Name"] = "GUI bind indicator", 
@@ -1618,9 +1618,9 @@ local welcomemsg = GUISettings.CreateToggle({
 	["HoverText"] = 'Displays a message indicating your GUI keybind upon injecting.\nI.E "Press RIGHTSHIFT to open GUI"'
 })
 GUISettings.CreateToggle({
-	["Name"] = "Old Rainbow", 
+	["Name"] = "Smooth Rainbow", 
 	["Function"] = function(callback) oldrainbow = callback end,
-	["HoverText"] = "Reverts to old rainbow"
+	["HoverText"] = "Makes every color the same instead of randomized."
 })
 GUISettings.CreateToggle({
 	["Name"] = "Show Tooltips", 
@@ -1738,7 +1738,7 @@ GuiLibrary["SelfDestruct"] = function()
 end
 
 GeneralSettings.CreateButton2({
-	["Name"] = "RESET CURRENT PROFILE", 
+	["Name"] = "Wipe Current Profile", 
 	["Function"] = function()
 		local yokaiprivate = shared.YokaiPrivate
 		local id = (shared.CustomSaveYokai or game.PlaceId)
@@ -1751,7 +1751,7 @@ GeneralSettings.CreateButton2({
 	end
 })
 GUISettings.CreateButton2({
-	["Name"] = "RESET GUI POSITIONS", 
+	["Name"] = "Reset GUI Positions", 
 	["Function"] = function()
 		for i,v in pairs(GuiLibrary["ObjectsThatCanBeSaved"]) do
 			local obj = GuiLibrary["ObjectsThatCanBeSaved"][i]
