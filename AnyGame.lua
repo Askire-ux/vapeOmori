@@ -2018,38 +2018,38 @@ runcode(function()
 	})
 end)
 
-local longjumpboost = {["Value"] = 1}
-local longjump = {["Enabled"] = false}
-local longjumpchange = true
-longjump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
-	["Name"] = "LongJump", 
+local rollmodifierboost = {["Value"] = 1}
+local rollmodifier = {["Enabled"] = false}
+local rollmodifierchange = true
+rollmodifier = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "Roll Modifier", 
 	["Function"] = function(callback)
 		if callback then
 			if entity.isAlive and entity.character.Humanoid.FloorMaterial ~= Enum.Material.Air then
 				entity.character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 			end
-			RunLoops:BindToHeartbeat("LongJump", 1, function() 
+			RunLoops:BindToHeartbeat("Roll Modifier", 1, function() 
 				if entity.isAlive then
 					if (entity.character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall or entity.character.Humanoid:GetState() == Enum.HumanoidStateType.Jumping) and entity.character.Humanoid.MoveDirection ~= Vector3.new() then
-						local velo = entity.character.Humanoid.MoveDirection * longjumpboost["Value"]
+						local velo = entity.character.Humanoid.MoveDirection * rollmodifierboost["Value"]
 						entity.character.HumanoidRootPart.Velocity = Vector3.new(velo.X, entity.character.HumanoidRootPart.Velocity.Y, velo.Z)
 					end
 					local check = entity.character.Humanoid.FloorMaterial ~= Enum.Material.Air
-					if longjumpchange ~= check then 
+					if rollmodifierchange ~= check then 
 						if check then 
-							longjump["ToggleButton"](true)
+							rollmodifier["ToggleButton"](true)
 						end
-						longjumpchange = check
+						rollmodifierchange = check
 					end
 				end
 			end)
 		else
-			RunLoops:UnbindFromHeartbeat("LongJump")
-			longjumpchange = true
+			RunLoops:UnbindFromHeartbeat("Roll Modifier")
+			rollmodifierchange = true
 		end
 	end
 })
-longjumpboost = longjump.CreateSlider({
+rollmodifierboost = rollmodifier.CreateSlider({
 	["Name"] = "Boost",
 	["Min"] = 1,
 	["Max"] = 150, 
@@ -2069,7 +2069,7 @@ HighJump = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOpt
 			highjumpbound = false
 			if HighJumpMethod["Value"] == "Toggle" then
 				if HighJumpTick > tick()  then
-					createwarning("LongJump", "Wait "..math.round(HighJumpTick - tick()).." before retoggling.", 1)
+					createwarning("Roll Modifier", "Wait "..math.round(HighJumpTick - tick()).." before retoggling.", 1)
 				end
 				if HighJumpTick <= tick() and entity.isAlive and (entity.character.Humanoid:GetState() == Enum.HumanoidStateType.Running or entity.character.Humanoid:GetState() == Enum.HumanoidStateType.RunningNoPhysics) then
 					HighJumpTick = tick() + (HighJumpDelay["Value"] / 10)
