@@ -5030,9 +5030,7 @@ if (game.placeId == 6152116144) then
 						}
 						
 						game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-						if WindTP["Enabled"] then 
-							WindTP["ToggleButton"](false)
-						end
+						WindTP["ToggleButton"](false)
 				end
 			end,
 			["HoverText"] = "Automatically grants you Wind Breathing."
@@ -5070,9 +5068,7 @@ if (game.placeId == 6152116144) then
 					}
 				
 					game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-					if ThunderTP["Enabled"] then 
-						ThunderTP["ToggleButton"](false)
-					end
+					ThunderTP["ToggleButton"](false)
 			end
 		end,
 		["HoverText"] = "Automatically grants you Thunder Breathing."
@@ -5111,9 +5107,7 @@ end)
 				}
 			
 				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-				if InsectTP["Enabled"] then 
-					InsectTP["ToggleButton"](false)
-				end
+				InsectTP["ToggleButton"](false)
 			end
 		end,
 		["HoverText"] = "Automatically grants you Insect Breathing."
@@ -5151,9 +5145,7 @@ end)
 				}
 			
 				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-				if WaterTP["Enabled"] then 
-					WaterTP["ToggleButton"](false)
-				end
+				WaterTP["ToggleButton"](false)
 			end
 		end,
 		["HoverText"] = "Automatically grants you Water Breathing."
@@ -5206,9 +5198,7 @@ runcode(function()
         }
         
         game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-		if MuzanTP["Enabled"] then 
-			MuzanTP["ToggleButton"](false)
-		end
+		MuzanTP["ToggleButton"](false)
 		end
 	end,
 	["HoverText"] = "Automatically grants you Muzan's questline."
@@ -5223,9 +5213,7 @@ runcode(function()
 		if callback then 
 			local doctorPosition = game:GetService("Workspace")["Doctor Higoshima"].HumanoidRootPart.Position
     		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(doctorPosition)
-			if DrHigoshit["Enabled"] then 
-				DrHigoshit["ToggleButton"](false)
-			end
+			DrHigoshit["ToggleButton"](false)
 		end
 	end,
 	["HoverText"] = "Automatically teleports you to Dr Higoshima."
@@ -5243,9 +5231,7 @@ runcode(function()
 			local Target = game.Players.LocalPlayer.PlayerGui["Npc_Dialogue"]["Do_Text"];
 			Target:Fire(string_1, string_2);
 
-			if HorseGuy["Enabled"] then 
-				HorseGuy["ToggleButton"](false)
-			end
+			HorseGuy["ToggleButton"](false)
 		end
 	end,
 	["HoverText"] = "Allows you to open HorseGuy's UI anywhere on the map."
