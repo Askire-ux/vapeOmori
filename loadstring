@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/vapeOmori/main/main.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Askire-ux/yokai/main/main.lua", true))()
