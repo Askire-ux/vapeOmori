@@ -5005,6 +5005,7 @@ end)
 
 if (game.placeId == 6152116144) then
 	runcode(function()
+		local WindTP = {["Enabled"] = false}
 			Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 			["Name"] = "Get Wind Breathing",
 			["Function"] = function(callback)
@@ -5029,6 +5030,9 @@ if (game.placeId == 6152116144) then
 						}
 						
 						game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+						if WindTP["Enabled"] then 
+							WindTP["ToggleButton"](false)
+						end
 				end
 			end,
 			["HoverText"] = "Automatically grants you Wind Breathing."
@@ -5037,6 +5041,7 @@ if (game.placeId == 6152116144) then
 
 
 	runcode(function()
+		local ThunderTP = {["Enabled"] = false}
 		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "Get Thunder Breathing",
 		["Function"] = function(callback)
@@ -5065,6 +5070,9 @@ if (game.placeId == 6152116144) then
 					}
 				
 					game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+					if ThunderTP["Enabled"] then 
+						ThunderTP["ToggleButton"](false)
+					end
 			end
 		end,
 		["HoverText"] = "Automatically grants you Thunder Breathing."
@@ -5074,6 +5082,7 @@ end)
 
 
 	runcode(function()
+		local InsectTP = {["Enabled"] = false}
 		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "Get Insect Breathing",
 		["Function"] = function(callback)
@@ -5102,6 +5111,9 @@ end)
 				}
 			
 				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+				if InsectTP["Enabled"] then 
+					InsectTP["ToggleButton"](false)
+				end
 			end
 		end,
 		["HoverText"] = "Automatically grants you Insect Breathing."
@@ -5110,6 +5122,7 @@ end)
 
 
 	runcode(function()
+		local WaterTP = {["Enabled"] = false}
 		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "Get Water Breathing",
 		["Function"] = function(callback)
@@ -5138,6 +5151,9 @@ end)
 				}
 			
 				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+				if WaterTP["Enabled"] then 
+					WaterTP["ToggleButton"](false)
+				end
 			end
 		end,
 		["HoverText"] = "Automatically grants you Water Breathing."
@@ -5145,6 +5161,7 @@ end)
 end)
 
 runcode(function()
+	local MuzanTP = {["Enabled"] = false}
 	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 	["Name"] = "Get Muzan Quest",
 	["Function"] = function(callback)
@@ -5189,7 +5206,9 @@ runcode(function()
         }
         
         game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-    	wait(1)
+		if MuzanTP["Enabled"] then 
+			MuzanTP["ToggleButton"](false)
+		end
 		end
 	end,
 	["HoverText"] = "Automatically grants you Muzan's questline."
@@ -5197,12 +5216,16 @@ runcode(function()
 end)
 
 runcode(function()
+	local DrHigoshit = {["Enabled"] = false}
 	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 	["Name"] = "Teleport to Dr Higoshima",
 	["Function"] = function(callback)
 		if callback then 
 			local doctorPosition = game:GetService("Workspace")["Doctor Higoshima"].HumanoidRootPart.Position
     		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(doctorPosition)
+			if DrHigoshit["Enabled"] then 
+				DrHigoshit["ToggleButton"](false)
+			end
 		end
 	end,
 	["HoverText"] = "Automatically teleports you to Dr Higoshima."
@@ -5210,6 +5233,7 @@ runcode(function()
 end)
 
 runcode(function()
+	local HorseGuy = {["Enabled"] = false}
 	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
 	["Name"] = "Open HorseGuy UI",
 	["Function"] = function(callback)
@@ -5218,6 +5242,10 @@ runcode(function()
 			local string_2 = "Horse guy";
 			local Target = game.Players.LocalPlayer.PlayerGui["Npc_Dialogue"]["Do_Text"];
 			Target:Fire(string_1, string_2);
+
+			if HorseGuy["Enabled"] then 
+				HorseGuy["ToggleButton"](false)
+			end
 		end
 	end,
 	["HoverText"] = "Allows you to open HorseGuy's UI anywhere on the map."
