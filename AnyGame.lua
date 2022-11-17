@@ -4330,7 +4330,7 @@ runcode(function()
 						repeat
 							if ChatSpammer["Enabled"] then
 								pcall(function()
-									repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer((#ChatSpammerMessages["ObjectList"] > 0 and ChatSpammerMessages["ObjectList"][math.random(1, #ChatSpammerMessages["ObjectList"])] or "vxpe on top"), "All")
+									repstorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer((#ChatSpammerMessages["ObjectList"] > 0 and ChatSpammerMessages["ObjectList"][math.random(1, #ChatSpammerMessages["ObjectList"])] or "mreow meowww meow mreeoooowww"), "All")
 								end)
 							end
 							if waitnum ~= 0 then
