@@ -203,6 +203,7 @@ local Profiles = GuiLibrary.CreateWindow2({
 	["Icon"] = "yokai/assets/ProfilesIcon.png", 
 	["IconSize"] = 19
 })
+
 GUI.CreateDivider()
 GUI.CreateButton({
 	["Name"] = "Combat", 
@@ -243,6 +244,23 @@ GUI.CreateButton({
 	["Name"] = "Profiles", 
 	["Function"] = function(callback) Profiles.SetVisible(callback) end, 
 })
+
+if (game.placeId == 6152116144) then
+	local ProjectSlayers = GuiLibrary.CreateWindow({
+		["Name"] = "Project Slayers", 
+		["Icon"] = "yokai/assets/DemonSlayer.png", 
+		["IconSize"] = 15
+	})
+
+	GUI.CreateButton({
+		["Name"] = "Project Slayers", 
+		["Function"] = function(callback) ProjectSlayers.SetVisible(callback) end, 
+		["Icon"] = "yokai/assets/DemonSlayer.png", 
+		["IconSize"] = 16
+	})
+end
+
+
 local FriendsTextList = {["RefreshValues"] = function() end, ["ObjectListEnabled"] = {}}
 local FriendsColor = {["Value"] = 0.44}
 local friendscreatetab = {
@@ -595,11 +613,11 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 		local onlineprofiles = {}
 		local saveplaceid = tostring(shared.CustomSaveYokai or game.PlaceId)
 		--place where bug might be
-		for i,v in pairs(grabdata("https://raw.githubusercontent.com/7GrandDadPGN/YokaiProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt")) do 
+		for i,v in pairs(grabdata("https://raw.githubusercontent.com/Askire-ux/yokai/main/Profiles/"..saveplaceid.."/profilelist.txt")) do 
 			onlineprofiles[i] = v
 		end
 		for i2,v2 in pairs(onlineprofiles) do
-			local profileurl = "https://raw.githubusercontent.com/7GrandDadPGN/YokaiProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
+			local profileurl = "https://raw.githubusercontent.com/Askire-ux/yokai/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
 			local profilebox = Instance.new("Frame")
 			profilebox.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 			profilebox.Parent = OnlineProfilesList
@@ -1444,14 +1462,17 @@ local blatantmode = GUI.CreateToggle({
 	["Function"] = function() end,
 	["HoverText"] = "Required for certain features."
 })
+
+if (game.placeId == 6152116144) then
 local tabsortorder = {
 	["CombatButton"] = 1,
 	["BlatantButton"] = 2,
 	["RenderButton"] = 3,
 	["UtilityButton"] = 4,
 	["WorldButton"] = 5,
-	["FriendsButton"] = 6,
-	["ProfilesButton"] = 7
+	["Project SlayersButton"] = 6,
+	["FriendsButton"] = 7,
+	["ProfilesButton"] = 8
 }
 
 local tabsortorder2 = {
@@ -1459,8 +1480,28 @@ local tabsortorder2 = {
 	[2] = "Blatant",
 	[3] = "Render",
 	[4] = "Utility",
-	[5] = "World"
+	[5] = "World",
+	[6] = "Project Slayers"
 }
+else
+	local tabsortorder = {
+		["CombatButton"] = 1,
+		["BlatantButton"] = 2,
+		["RenderButton"] = 3,
+		["UtilityButton"] = 4,
+		["WorldButton"] = 5,
+		["FriendsButton"] = 6,
+		["ProfilesButton"] = 7
+	}
+	
+	local tabsortorder2 = {
+		[1] = "Combat",
+		[2] = "Blatant",
+		[3] = "Render",
+		[4] = "Utility",
+		[5] = "World"
+	}
+end
 
 local function getSaturation(val)
 	local sat = 0.9
@@ -1768,19 +1809,38 @@ GUISettings.CreateButton2({
 	["Function"] = function()
 		local sorttable = {}
 		local movedown = false
-		local sortordertable = {
-			["GUIWindow"] = 1,
-			["CombatWindow"] = 2,
-			["BlatantWindow"] = 3,
-			["RenderWindow"] = 4,
-			["UtilityWindow"] = 5,
-			["WorldWindow"] = 6,
-			["FriendsWindow"] = 7,
-			["ProfilesWindow"] = 8,
-			["Text GUICustomWindow"] = 9,
-			["TargetInfoCustomWindow"] = 10,
-			["RadarCustomWindow"] = 11,
-		}
+
+		if (game.placeId == 6152116144) then
+			local sortordertable = {
+				["GUIWindow"] = 1,
+				["CombatWindow"] = 2,
+				["BlatantWindow"] = 3,
+				["RenderWindow"] = 4,
+				["UtilityWindow"] = 5,
+				["WorldWindow"] = 6,
+				["Project SlayersWindow"] = 7,
+				["FriendsWindow"] = 8,
+				["ProfilesWindow"] = 9,
+				["Text GUICustomWindow"] = 10,
+				["TargetInfoCustomWindow"] = 11,
+				["RadarCustomWindow"] = 12,
+			}
+		else
+			local sortordertable = {
+				["GUIWindow"] = 1,
+				["CombatWindow"] = 2,
+				["BlatantWindow"] = 3,
+				["RenderWindow"] = 4,
+				["UtilityWindow"] = 5,
+				["WorldWindow"] = 6,
+				["FriendsWindow"] = 7,
+				["ProfilesWindow"] = 8,
+				["Text GUICustomWindow"] = 9,
+				["TargetInfoCustomWindow"] = 10,
+				["RadarCustomWindow"] = 11,
+			}
+		end
+		
 		local storedpos = {}
 		local num = 6
 		for i,v in pairs(GuiLibrary["ObjectsThatCanBeSaved"]) do
