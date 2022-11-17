@@ -5006,7 +5006,7 @@ end)
 if (game.placeId == 6152116144) then
 	runcode(function()
 			Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
-			["Name"] = "[PS] Automatic Wind Breathing",
+			["Name"] = "Get Wind Breathing",
 			["Function"] = function(callback)
 				if callback then 
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1794,335,-3522)
@@ -5034,4 +5034,111 @@ if (game.placeId == 6152116144) then
 			["HoverText"] = "Automatically grants you Wind Breathing."
 		})
 	end)
+
+
+	runcode(function()
+		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "Get Thunder Breathing",
+		["Function"] = function(callback)
+			if callback then 
+				local plr = game.Players.LocalPlayer
+	local Data = game.ReplicatedStorage["Player_Data"][plr.Name]
+	local PlayerGui = plr.PlayerGui
+	local Level = PlayerGui.Menu.Bars["Level_text"]
+
+		wait(2)
+
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-316, 427, -2385)
+
+		wait(1)
+
+		
+		local args = {
+			[1] = "AddQuest",
+			[2] = "Players."..plr.Name..".PlayerGui.Npc_Dialogue.LocalScript.Checking",
+			[3] = 610462.1832735,
+			[4] = game:GetService("ReplicatedStorage").Player_Data[plr.Name].Quest,
+			[5] = {
+				["List"] = {},
+				["Current"] = "Defeat Thunder Trainee"
+			}
+		}
+	
+		game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+			end
+		end,
+		["HoverText"] = "Automatically grants you Thunder Breathing."
+	})
+
+
+
+	runcode(function()
+		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "Get Insect Breathing",
+		["Function"] = function(callback)
+			if callback then 
+				local plr = game.Players.LocalPlayer
+				local Data = game.ReplicatedStorage["Player_Data"][plr.Name]
+				local PlayerGui = plr.PlayerGui
+				local Level = PlayerGui.Menu.Bars["Level_text"]
+
+				wait(2)
+
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2875, 317, -3919)
+
+				wait(1)
+
+				
+				local args = {
+					[1] = "AddQuest",
+					[2] = "Players."..plr.Name..".PlayerGui.Npc_Dialogue.LocalScript.Checking",
+					[3] = 610462.1832735,
+					[4] = game:GetService("ReplicatedStorage").Player_Data[plr.Name].Quest,
+					[5] = {
+						["List"] = {},
+						["Current"] = "Defeat Insect Trainee"
+					}
+				}
+			
+				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+			end
+		end,
+		["HoverText"] = "Automatically grants you Insect Breathing."
+	})
+
+
+	runcode(function()
+		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "Get Insect Breathing",
+		["Function"] = function(callback)
+			if callback then 
+				local plr = game.Players.LocalPlayer
+				local Data = game.ReplicatedStorage["Player_Data"][plr.Name]
+				local PlayerGui = plr.PlayerGui
+				local Level = PlayerGui.Menu.Bars["Level_text"]
+
+				wait(2)
+
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(713, 261, -2395)
+
+				wait(1)
+
+				
+				local args = {
+					[1] = "AddQuest",
+					[2] = "Players."..plr.Name..".PlayerGui.Npc_Dialogue.LocalScript.Checking",
+					[3] = 610462.1832735,
+					[4] = game:GetService("ReplicatedStorage").Player_Data[plr.Name].Quest,
+					[5] = {
+						["List"] = {},
+						["Current"] = "Defeat Water Trainee"
+					}
+				}
+			
+				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+			end
+		end,
+		["HoverText"] = "Automatically grants you Insect Breathing."
+	})
+end)
 end
