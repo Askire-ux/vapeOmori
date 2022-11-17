@@ -54,7 +54,7 @@ if not (getasset and requestfunc and queueteleport) then
 end
 
 if shared.YokaiExecuted then
-	error("Yokai already injected".)
+	print("cock")
 	return
 else
 	shared.YokaiExecuted = true
