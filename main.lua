@@ -250,14 +250,14 @@ if (game.placeId == 6152116144) then
 	
 	local ProjectSlayers = GuiLibrary.CreateWindow({
 		["Name"] = "Project Slayers", 
-		["Icon"] = "yokai/assets/YokaiLogo4.png", 
+		["Icon"] = "yokai/assets/DemonSlayer.png", 
 		["IconSize"] = 15
 	})
 	GUI.CreateDivider("SPECIFIC GAMES")
 	GUI.CreateButton({
 		["Name"] = "Project Slayers", 
 		["Function"] = function(callback) ProjectSlayers.SetVisible(callback) end, 
-		["Icon"] = "yokai/assets/YokaiLogo4.png", 
+		["Icon"] = "yokai/assets/DemonSlayer.png", 
 		["IconSize"] = 16
 	})
 end
