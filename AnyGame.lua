@@ -5111,7 +5111,7 @@ end)
 
 	runcode(function()
 		Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "Get Insect Breathing",
+		["Name"] = "Get Water Breathing",
 		["Function"] = function(callback)
 			if callback then 
 				local plr = game.Players.LocalPlayer
@@ -5121,7 +5121,7 @@ end)
 
 				wait(2)
 
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(713, 261, -2395)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(713, 265, -2395)
 
 				wait(1)
 
@@ -5140,7 +5140,88 @@ end)
 				game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
 			end
 		end,
-		["HoverText"] = "Automatically grants you Insect Breathing."
+		["HoverText"] = "Automatically grants you Water Breathing."
 	})
 end)
+
+runcode(function()
+	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "Get Muzan Quest",
+	["Function"] = function(callback)
+		if callback then 
+			local plr = game.Players.LocalPlayer
+		local Data = game.ReplicatedStorage["Player_Data"][plr.Name]
+		local PlayerGui = plr.PlayerGui
+		local Level = PlayerGui.Menu.Bars["Level_text"]
+
+		wait(2)
+
+		local humanShitPosition = game.Workspace.Muzan.SpawnPos
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(humanShitPosition.Value)
+
+		wait(1)
+
+		
+		local args = {
+            [1] = "AddQuest",
+            [2] = "Players."..plr.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
+            [3] = 18516.191837399998,
+            [4] = game:GetService("ReplicatedStorage").Player_Data[plr.Name].Quest,
+            [5] = {
+                ["List"] = {
+                    [1] = {
+                        ["Name"] = "Collect Blue Spider Lily flowers",
+                        ["Progress"] = {
+                            [1] = 5,
+                            [2] = 5
+                        }
+                    },
+                    [2] = {
+                        ["Name"] = "Bring Doctor Higoshima to Muzan",
+                        ["Progress"] = {
+                            [1] = 1,
+                            [2] = 1
+                        }
+                    }
+                },
+                ["Current"] = "Join Muzan's demon ranks"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+    	wait(1)
+		end
+	end,
+	["HoverText"] = "Automatically grants you Muzan's questline."
+})
+end)
+
+runcode(function()
+	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "Teleport to Dr Higoshima",
+	["Function"] = function(callback)
+		if callback then 
+			local doctorPosition = game:GetService("Workspace")["Doctor Higoshima"].HumanoidRootPart.Position
+    		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(doctorPosition)
+		end
+	end,
+	["HoverText"] = "Automatically teleports you to Dr Higoshima."
+})
+end)
+
+runcode(function()
+	Disabler = GuiLibrary["ObjectsThatCanBeSaved"]["Project SlayersWindow"]["Api"].CreateOptionsButton({
+	["Name"] = "Open HorseGuy UI",
+	["Function"] = function(callback)
+		if callback then 
+			local string_1 = "horseguy_txt";
+			local string_2 = "Horse guy";
+			local Target = game.Players.LocalPlayer.PlayerGui["Npc_Dialogue"]["Do_Text"];
+			Target:Fire(string_1, string_2);
+		end
+	end,
+	["HoverText"] = "Allows you to open HorseGuy's UI anywhere on the map."
+})
+end)
+
 end
