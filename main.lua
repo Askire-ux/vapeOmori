@@ -54,7 +54,7 @@ if not (getasset and requestfunc and queueteleport) then
 end
 
 if shared.YokaiExecuted then
-	error("Yokai Already Injected")
+	createwarning("Yokai", "Already injected.", 1)
 	return
 else
 	shared.YokaiExecuted = true
