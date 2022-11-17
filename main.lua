@@ -239,10 +239,14 @@ GUI.CreateDivider("MISC")
 GUI.CreateButton({
 	["Name"] = "Friends", 
 	["Function"] = function(callback) Friends.SetVisible(callback) end, 
+	["Icon"] = "yokai/assets/FriendsIcon.png",
+	["IconSize"] = 16
 })
 GUI.CreateButton({
 	["Name"] = "Profiles", 
 	["Function"] = function(callback) Profiles.SetVisible(callback) end, 
+	["Icon"] = "yokai/assets/ProfilesIcon.png",
+	["IconSize"] = 16
 })
 
 
