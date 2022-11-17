@@ -2164,7 +2164,7 @@ phase = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOption
 			table.clear(phaseparts)
 		end
 	end,
-	["HoverText"] = "Lets you Phase/Clip through walls. (Hold shift to use phase over spider)"
+	["HoverText"] = "Lets you Phase/Clip through walls. (Hold shift to prioritize phase over spider)"
 })
 phasemode = phase.CreateDropdown({
 	["Name"] = "Mode",
