@@ -173,8 +173,8 @@ local Combat = GuiLibrary.CreateWindow({
 	["Icon"] = "yokai/assets/CombatIcon.png", 
 	["IconSize"] = 15
 })
-local Blatant = GuiLibrary.CreateWindow({
-	["Name"] = "Blatant", 
+local Movement = GuiLibrary.CreateWindow({
+	["Name"] = "Movement", 
 	["Icon"] = "yokai/assets/BlatantIcon.png", 
 	["IconSize"] = 16
 })
@@ -212,8 +212,8 @@ GUI.CreateButton({
 	["IconSize"] = 15
 })
 GUI.CreateButton({
-	["Name"] = "Blatant", 
-	["Function"] = function(callback) Blatant.SetVisible(callback) end, 
+	["Name"] = "Movement", 
+	["Function"] = function(callback) Movement.SetVisible(callback) end, 
 	["Icon"] = "yokai/assets/BlatantIcon.png", 
 	["IconSize"] = 16
 })
@@ -1468,7 +1468,7 @@ local blatantmode = GUI.CreateToggle({
 if (game.placeId == 6152116144) then
 local tabsortorder = {
 	["CombatButton"] = 1,
-	["BlatantButton"] = 2,
+	["MovementButton"] = 2,
 	["RenderButton"] = 3,
 	["UtilityButton"] = 4,
 	["WorldButton"] = 5,
@@ -1479,7 +1479,7 @@ local tabsortorder = {
 
 local tabsortorder2 = {
 	[1] = "Combat",
-	[2] = "Blatant",
+	[2] = "Movement",
 	[3] = "Render",
 	[4] = "Utility",
 	[5] = "World",
@@ -1488,7 +1488,7 @@ local tabsortorder2 = {
 else
 	local tabsortorder = {
 		["CombatButton"] = 1,
-		["BlatantButton"] = 2,
+		["MovementButton"] = 2,
 		["RenderButton"] = 3,
 		["UtilityButton"] = 4,
 		["WorldButton"] = 5,
@@ -1498,7 +1498,7 @@ else
 	
 	local tabsortorder2 = {
 		[1] = "Combat",
-		[2] = "Blatant",
+		[2] = "Movement",
 		[3] = "Render",
 		[4] = "Utility",
 		[5] = "World"
@@ -1817,7 +1817,7 @@ GUISettings.CreateButton2({
 			local sortordertable = {
 				["GUIWindow"] = 1,
 				["CombatWindow"] = 2,
-				["BlatantWindow"] = 3,
+				["MovementWindow"] = 3,
 				["RenderWindow"] = 4,
 				["UtilityWindow"] = 5,
 				["WorldWindow"] = 6,
@@ -1866,7 +1866,7 @@ else
 				local sortordertable = {
 					["GUIWindow"] = 1,
 					["CombatWindow"] = 2,
-					["BlatantWindow"] = 3,
+					["MovementWindow"] = 3,
 					["RenderWindow"] = 4,
 					["UtilityWindow"] = 5,
 					["WorldWindow"] = 6,
