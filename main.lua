@@ -54,7 +54,7 @@ if not (getasset and requestfunc and queueteleport) then
 end
 
 if shared.YokaiExecuted then
-	createwarning("Yokai", "Already injected.", 1)
+	error("Yokai already injected".)
 	return
 else
 	shared.YokaiExecuted = true
@@ -247,17 +247,17 @@ GUI.CreateButton({
 
 
 if (game.placeId == 6152116144) then
-	GUI.CreateDivider("SPECIFIC GAMES")
+	
 	local ProjectSlayers = GuiLibrary.CreateWindow({
 		["Name"] = "Project Slayers", 
-		["Icon"] = "yokai/assets/DemonSlayer.png", 
+		["Icon"] = "yokai/assets/YokaiLogo4.png", 
 		["IconSize"] = 15
 	})
-
+	GUI.CreateDivider("SPECIFIC GAMES")
 	GUI.CreateButton({
 		["Name"] = "Project Slayers", 
 		["Function"] = function(callback) ProjectSlayers.SetVisible(callback) end, 
-		["Icon"] = "yokai/assets/DemonSlayer.png", 
+		["Icon"] = "yokai/assets/YokaiLogo4.png", 
 		["IconSize"] = 16
 	})
 end
