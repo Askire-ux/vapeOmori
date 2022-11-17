@@ -245,7 +245,9 @@ GUI.CreateButton({
 	["Function"] = function(callback) Profiles.SetVisible(callback) end, 
 })
 
+
 if (game.placeId == 6152116144) then
+	GUI.CreateDivider("SPECIFIC GAMES")
 	local ProjectSlayers = GuiLibrary.CreateWindow({
 		["Name"] = "Project Slayers", 
 		["Icon"] = "yokai/assets/DemonSlayer.png", 
