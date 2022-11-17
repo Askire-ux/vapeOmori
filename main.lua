@@ -175,7 +175,7 @@ local Combat = GuiLibrary.CreateWindow({
 })
 local Movement = GuiLibrary.CreateWindow({
 	["Name"] = "Movement", 
-	["Icon"] = "yokai/assets/BlatantIcon.png", 
+	["Icon"] = "yokai/assets/MovementIcon.png", 
 	["IconSize"] = 16
 })
 local Render = GuiLibrary.CreateWindow({
@@ -214,7 +214,7 @@ GUI.CreateButton({
 GUI.CreateButton({
 	["Name"] = "Movement", 
 	["Function"] = function(callback) Movement.SetVisible(callback) end, 
-	["Icon"] = "yokai/assets/BlatantIcon.png", 
+	["Icon"] = "yokai/assets/MovementIcon.png", 
 	["IconSize"] = 16
 })
 GUI.CreateButton({
