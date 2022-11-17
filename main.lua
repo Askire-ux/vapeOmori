@@ -1804,13 +1804,14 @@ GUISettings.CreateButton2({
 		end
 	end
 })
+
+if (game.placeId == 6152116144) then
 GUISettings.CreateButton2({
 	["Name"] = "SORT GUI", 
 	["Function"] = function()
 		local sorttable = {}
 		local movedown = false
 
-		if (game.placeId == 6152116144) then
 			local sortordertable = {
 				["GUIWindow"] = 1,
 				["CombatWindow"] = 2,
@@ -1825,21 +1826,6 @@ GUISettings.CreateButton2({
 				["TargetInfoCustomWindow"] = 11,
 				["RadarCustomWindow"] = 12,
 			}
-		else
-			local sortordertable = {
-				["GUIWindow"] = 1,
-				["CombatWindow"] = 2,
-				["BlatantWindow"] = 3,
-				["RenderWindow"] = 4,
-				["UtilityWindow"] = 5,
-				["WorldWindow"] = 6,
-				["FriendsWindow"] = 7,
-				["ProfilesWindow"] = 8,
-				["Text GUICustomWindow"] = 9,
-				["TargetInfoCustomWindow"] = 10,
-				["RadarCustomWindow"] = 11,
-			}
-		end
 		
 		local storedpos = {}
 		local num = 6
@@ -1868,6 +1854,55 @@ GUISettings.CreateButton2({
 		end
 	end
 })
+else
+	GUISettings.CreateButton2({
+		["Name"] = "SORT GUI", 
+		["Function"] = function()
+			local sorttable = {}
+			local movedown = false
+	
+				local sortordertable = {
+					["GUIWindow"] = 1,
+					["CombatWindow"] = 2,
+					["BlatantWindow"] = 3,
+					["RenderWindow"] = 4,
+					["UtilityWindow"] = 5,
+					["WorldWindow"] = 6,
+					["FriendsWindow"] = 7,
+					["ProfilesWindow"] = 8,
+					["Text GUICustomWindow"] = 9,
+					["TargetInfoCustomWindow"] = 10,
+					["RadarCustomWindow"] = 11,
+				}
+			
+			local storedpos = {}
+			local num = 6
+			for i,v in pairs(GuiLibrary["ObjectsThatCanBeSaved"]) do
+				local obj = GuiLibrary["ObjectsThatCanBeSaved"][i]
+				if obj then
+					if v["Type"] == "Window" and v["Object"].Visible then
+						local sortordernum = (sortordertable[i] or #sorttable)
+						sorttable[sortordernum] = v["Object"]
+					end
+				end
+			end
+			for i2,v2 in pairs(sorttable) do
+				if num > 1697 then
+					movedown = true
+					num = 6
+				end
+				v2.Position = UDim2.new(0, num, 0, (movedown and (storedpos[num] and (storedpos[num] + 9) or 400) or 39))
+				if not storedpos[num] then
+					storedpos[num] = v2.AbsoluteSize.Y
+					if v2.Name == "MainWindow" then
+						storedpos[num] = 400
+					end
+				end
+				num = num + 223
+			end
+		end
+	})
+end
 GeneralSettings.CreateButton2({
 	["Name"] = "UNINJECT",
 	["Function"] = GuiLibrary["SelfDestruct"]
